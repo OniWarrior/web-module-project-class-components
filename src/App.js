@@ -65,7 +65,7 @@ class App extends React.Component {
     console.log("updated todo array", updatedToDos);
     this.setState({
       ...this.state,
-      groceries: updatedGroceries
+      todo: updatedToDos
     });
   };
 
@@ -75,7 +75,7 @@ class App extends React.Component {
       toDos: [
         ...this.state.toDos,
         {
-          name: itemName,
+          name: todoName,
           id: Date.now(),
           completed: false
         }
