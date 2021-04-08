@@ -5,7 +5,7 @@ class ToDoForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      newToDo: ''
+      newTodo: ''
     }
   }
 
@@ -13,24 +13,24 @@ class ToDoForm extends React.Component {
     
     this.setState({
       ...this.state,
-      newToDo: e.target.value
+      newTodo: e.target.value
     })
   };
 
   
-  submitToDo = e => {
+  submitTodo = e => {
     e.preventDefault(); 
-    this.props.addToDo(this.state.newToDo);
+    this.props.addTodo(this.state.newTodo);
   }
 
   render() {
     return (
-      <form onSubmit={this.submitToDo}>
-        <input value={this.state.newToDo} onChange={this.handleChanges} type="text" name="todo" />
-        <button>Add ToDo</button>
+      <form onSubmit={this.submitTodo}>
+        <input value={this.state.newTodo} onChange={this.handleChanges} type="text" name="todo" />
+        <button>Add Todo</button>
       </form>
     );
   }
 }
 
-export default TodoForm;
+export default ToDoForm;

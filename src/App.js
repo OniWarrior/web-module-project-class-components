@@ -6,7 +6,7 @@ import ToDoList from './components/TodoList';
 import ToDoForm from './components/TodoForm';
 
 
-const toDos = [
+const todosList = [
   {
     name: 'Learn about classes',
     id: 123,
@@ -47,33 +47,34 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      toDos: toDos,
+      todosList: todosList,
       otherVar: "something"
     }
   }
     // Member methods
-    toggleToDo = todoId =>{
+    toggleTodo = todoId =>{
       console.log('Toggling todo',todoId);
 
-      const updatedToDos = this.state.toDos.map(todo => {
-        if (todoId === todo.id) {
+      const updatedTodos = this.state.todosList.map(todo => {
+        if (todoId === todo.id) 
+        {
           return { ...todo, completed: !todo.completed }
         }
         return todo;
     });
 
-    console.log("updated todo array", updatedToDos);
+    console.log("updated todo array", updatedTodos);
     this.setState({
       ...this.state,
-      todo: updatedToDos
+      todosList: updatedTodos
     });
   };
 
-  addToDo = todoName => {
+  addTodo = todoName => {
     this.setState({
       ...this.state,
-      toDos: [
-        ...this.state.toDos,
+      todosList: [
+        ...this.state.todosList,
         {
           name: todoName,
           id: Date.now(),
@@ -88,18 +89,18 @@ class App extends React.Component {
     e.preventDefault();
     this.setState({
       ...this.state,
-      toDos: this.state.toDos.filter(todo => !todo.completed)
+      todosList: this.state.todosList.filter(todo => !todo.completed)
     })
   }
 
   render() {
     return (
       <div className='App'>
-         <div className="App-header">
-          <h1>Shopping List</h1>
-          <ToDoForm addToDo={this.addToDo} />
+         <div className="header">
+          <h1>Todo List</h1>
+          <ToDoForm addTodo={this.addTodo} />
         </div>
-        <ToDoList clearCompleted={this.clearCompleted} toggleToDo={this.toggleToDo} toDos={this.state.toDos} />
+        <ToDoList clearCompleted={this.clearCompleted} toggleTodo={this.toggleTodo} todosList={this.state.todosList} />
        
       </div>
     );
